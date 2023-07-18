@@ -1,33 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManyLinks</title>
     <script src="./tailwind.js"></script>
 </head>
-<body>
-    <div id="console"></div>
-</body>
-<script>
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const product = urlParams.get('link')
-console.log(product.split(','));
-Links=product.split(',')
 
-Links.forEach(element => {
-    document.getElementById('console').innerHTML+=`<a href=${element}>${element}</a>`
-});
+<body class="flex w-screen items-center justify-center h-screen ">
+    <div id="LINKS" class="flex items-center justify-center gap-1 max-w-[80vw] flex-wrap z-10">
+
+
+    </div>
+    <img src="https://picsum.photos/2048/2048" class="w-screen h-screen fixed z-0 object-cover" alt="">
+</body>
+
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    Links = urlParams.get('links').split(',')
+    try {
+
+        LinkNames = urlParams.get('linknames').split(',')
+    } catch {
+        LinkNames = Links
+
+    }
+    for (let index = 0; index < Links.length; index++) {
+        document.getElementById('LINKS').innerHTML += `<a style='background:rgba(${Math.round(Math.random()*10+0)},${Math.round(Math.random()*256)},${Math.round(Math.random()*256+100)},.9)' href=${Links[index]}>${LinkNames[index]}</a>`
+
+    }
+
 </script>
 <style>
-    a{
-        color:rgb(47, 47, 47);
-        display: block;
+    a {
+        background: rgb(211, 235, 255);
+        padding: 1px;
+        padding-inline: 10px;
+        border-radius: 3px;
+        font-size: 1.2em;
     }
     a:hover{
-        color:blue;
- 
+        filter: brightness(1.4);
+
     }
 </style>
+
 </html>
